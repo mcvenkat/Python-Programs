@@ -1,0 +1,83 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" type="text/css" />
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            <div class="bk-root" id="a0840f1d-dc1a-4a19-a82b-21d738c86662"></div>
+          
+        
+      
+      
+        <script type="application/json" id="d156c3d9-f2cc-44d3-aee3-aa8a4502e01e">
+          {"cf5d168f-4d33-4994-8b64-f4ebd0c08225":{"roots":{"references":[{"attributes":{},"id":"89222071-21ba-49a1-b270-fb9161a34f48","type":"HelpTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"a06389b3-a383-49c6-97de-7ea10f7be73a","type":"PanTool"},{"id":"aa66601e-1376-4c4c-82b9-8f2cacefffbf","type":"WheelZoomTool"},{"id":"5014a447-bde2-49f5-9708-4db612ce2348","type":"BoxZoomTool"},{"id":"95bdb10a-5063-46a6-92f3-95470fbf46c6","type":"SaveTool"},{"id":"8e533651-641d-4e1d-8b40-0a9f37cef95b","type":"ResetTool"},{"id":"89222071-21ba-49a1-b270-fb9161a34f48","type":"HelpTool"}]},"id":"6054ca28-e0b8-4dde-a6f9-e3803a28b8f0","type":"Toolbar"},{"attributes":{"below":[{"id":"07866e28-8062-4a11-a2f5-fe37c8ee7441","type":"CategoricalAxis"}],"left":[{"id":"8c61ee22-5f99-44f9-b443-4f392361d03a","type":"CategoricalAxis"}],"renderers":[{"id":"07866e28-8062-4a11-a2f5-fe37c8ee7441","type":"CategoricalAxis"},{"id":"e24ce8e9-78d9-4618-ab13-ff65552fa257","type":"Grid"},{"id":"8c61ee22-5f99-44f9-b443-4f392361d03a","type":"CategoricalAxis"},{"id":"27451b64-19d8-4bb6-9338-b3037e5bd6d8","type":"Grid"},{"id":"6660ed1b-ec1b-4be3-83fe-e5d2db6c6ba3","type":"BoxAnnotation"},{"id":"03ed1edf-4f82-450b-b85b-9ba6fa1a0066","type":"Label"},{"id":"fcb47ad6-e30c-4725-9b2a-6803da2a34ca","type":"LabelSet"},{"id":"1e50b09a-bc09-44f4-a354-1f8e74b804a9","type":"GlyphRenderer"}],"title":{"id":"693b86f3-cf8f-4511-be25-1468fb000254","type":"Title"},"toolbar":{"id":"6054ca28-e0b8-4dde-a6f9-e3803a28b8f0","type":"Toolbar"},"x_range":{"id":"e614419e-622c-4de0-9f00-44af5b8d405a","type":"FactorRange"},"x_scale":{"id":"58701687-a958-4cbd-81f2-ceaaa7b38618","type":"CategoricalScale"},"y_range":{"id":"8089e659-1535-42ef-b774-3549de4fabe8","type":"FactorRange"},"y_scale":{"id":"da7d9e8a-4737-4a68-a211-753d325597f8","type":"CategoricalScale"}},"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},{"attributes":{"callback":null,"data":{"average_grades":["B+","A","D-"],"exam_grades":["A+","C","D"],"student_names":["Stephen","Michael","Robert"]},"selected":{"id":"bda8d399-88e3-41d5-9785-088f9e114549","type":"Selection"},"selection_policy":{"id":"9849f015-45cf-4270-8707-394af8931d02","type":"UnionRenderers"}},"id":"3cd489b4-05d4-4f8d-9bda-4b5c1396c1a3","type":"ColumnDataSource"},{"attributes":{},"id":"61ed71d1-4352-4e6c-a5f6-baa376224f2e","type":"CategoricalTicker"},{"attributes":{"overlay":{"id":"6660ed1b-ec1b-4be3-83fe-e5d2db6c6ba3","type":"BoxAnnotation"}},"id":"5014a447-bde2-49f5-9708-4db612ce2348","type":"BoxZoomTool"},{"attributes":{},"id":"a06389b3-a383-49c6-97de-7ea10f7be73a","type":"PanTool"},{"attributes":{"plot":{"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},"render_mode":"css","text":"This graph shows average grades and exam grades for 3rd grade students","x":7,"y":1},"id":"03ed1edf-4f82-450b-b85b-9ba6fa1a0066","type":"Label"},{"attributes":{},"id":"aa66601e-1376-4c4c-82b9-8f2cacefffbf","type":"WheelZoomTool"},{"attributes":{},"id":"95bdb10a-5063-46a6-92f3-95470fbf46c6","type":"SaveTool"},{"attributes":{},"id":"8e533651-641d-4e1d-8b40-0a9f37cef95b","type":"ResetTool"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":8},"x":{"field":"average_grades"},"y":{"field":"exam_grades"}},"id":"baf34a97-8074-4a8f-b60b-ec1d3b28ff72","type":"Circle"},{"attributes":{"plot":null,"text":""},"id":"693b86f3-cf8f-4511-be25-1468fb000254","type":"Title"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":8},"x":{"field":"average_grades"},"y":{"field":"exam_grades"}},"id":"725c1a3a-7890-4313-988e-e6d557657ca7","type":"Circle"},{"attributes":{"data_source":{"id":"3cd489b4-05d4-4f8d-9bda-4b5c1396c1a3","type":"ColumnDataSource"},"glyph":{"id":"baf34a97-8074-4a8f-b60b-ec1d3b28ff72","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"725c1a3a-7890-4313-988e-e6d557657ca7","type":"Circle"},"selection_glyph":null,"view":{"id":"003652a2-3f81-4050-a9a0-b5ee104c0331","type":"CDSView"}},"id":"1e50b09a-bc09-44f4-a354-1f8e74b804a9","type":"GlyphRenderer"},{"attributes":{"source":{"id":"3cd489b4-05d4-4f8d-9bda-4b5c1396c1a3","type":"ColumnDataSource"}},"id":"003652a2-3f81-4050-a9a0-b5ee104c0331","type":"CDSView"},{"attributes":{},"id":"adb0874f-0928-4ef3-923c-295a8e70566b","type":"CategoricalTickFormatter"},{"attributes":{"callback":null,"factors":["F","D-","D","D+","C-","C","C+","B-","B","B+","A-","A","A+"]},"id":"e614419e-622c-4de0-9f00-44af5b8d405a","type":"FactorRange"},{"attributes":{"plot":{"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},"source":{"id":"3cd489b4-05d4-4f8d-9bda-4b5c1396c1a3","type":"ColumnDataSource"},"text":{"field":"student_names"},"x":{"field":"average_grades"},"x_offset":{"value":5},"y":{"field":"exam_grades"},"y_offset":{"value":5}},"id":"fcb47ad6-e30c-4725-9b2a-6803da2a34ca","type":"LabelSet"},{"attributes":{"callback":null,"factors":["F","D-","D","D+","C-","C","C+","B-","B","B+","A-","A","A+"]},"id":"8089e659-1535-42ef-b774-3549de4fabe8","type":"FactorRange"},{"attributes":{"formatter":{"id":"164180e5-b895-4fe6-9386-a4a4441384cf","type":"CategoricalTickFormatter"},"plot":{"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},"ticker":{"id":"61ed71d1-4352-4e6c-a5f6-baa376224f2e","type":"CategoricalTicker"}},"id":"8c61ee22-5f99-44f9-b443-4f392361d03a","type":"CategoricalAxis"},{"attributes":{"plot":{"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},"ticker":{"id":"280b7186-63ec-41bc-ad38-d406ba00690a","type":"CategoricalTicker"}},"id":"e24ce8e9-78d9-4618-ab13-ff65552fa257","type":"Grid"},{"attributes":{},"id":"58701687-a958-4cbd-81f2-ceaaa7b38618","type":"CategoricalScale"},{"attributes":{},"id":"9849f015-45cf-4270-8707-394af8931d02","type":"UnionRenderers"},{"attributes":{"formatter":{"id":"adb0874f-0928-4ef3-923c-295a8e70566b","type":"CategoricalTickFormatter"},"plot":{"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},"ticker":{"id":"280b7186-63ec-41bc-ad38-d406ba00690a","type":"CategoricalTicker"}},"id":"07866e28-8062-4a11-a2f5-fe37c8ee7441","type":"CategoricalAxis"},{"attributes":{},"id":"da7d9e8a-4737-4a68-a211-753d325597f8","type":"CategoricalScale"},{"attributes":{},"id":"bda8d399-88e3-41d5-9785-088f9e114549","type":"Selection"},{"attributes":{},"id":"164180e5-b895-4fe6-9386-a4a4441384cf","type":"CategoricalTickFormatter"},{"attributes":{},"id":"280b7186-63ec-41bc-ad38-d406ba00690a","type":"CategoricalTicker"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"6660ed1b-ec1b-4be3-83fe-e5d2db6c6ba3","type":"BoxAnnotation"},{"attributes":{"dimension":1,"plot":{"id":"7cf0f92d-91ff-48bd-8d98-501fd73a4135","subtype":"Figure","type":"Plot"},"ticker":{"id":"61ed71d1-4352-4e6c-a5f6-baa376224f2e","type":"CategoricalTicker"}},"id":"27451b64-19d8-4bb6-9338-b3037e5bd6d8","type":"Grid"}],"root_ids":["7cf0f92d-91ff-48bd-8d98-501fd73a4135"]},"title":"Bokeh Application","version":"0.13.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('d156c3d9-f2cc-44d3-aee3-aa8a4502e01e').textContent;
+                  var render_items = [{"docid":"cf5d168f-4d33-4994-8b64-f4ebd0c08225","roots":{"7cf0f92d-91ff-48bd-8d98-501fd73a4135":"a0840f1d-dc1a-4a19-a82b-21d738c86662"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
