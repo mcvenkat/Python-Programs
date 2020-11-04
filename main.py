@@ -1,112 +1,111 @@
-from kivy.app import App
-from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty
-from kivy.uix.popup import Popup
-from kivy.uix.label import Label
-from database import DataBase
+import numpy as np
+import cv2
+import time
+import pyautogui
+from directkeys import PressKey,ReleaseKey, W, A, S, D
+from draw_lanes import draw_lanes
+from grabscreen import grab_screen
+
+def roi(img, vertices):
+    
+    #blank mask:
+    mask = np.zeros_like(img)   
+    
+    #filling pixels inside the polygon defined by "vertices" with the fill color    
+    cv2.fillPoly(mask, vertices, 255)
+    
+    #returning the image only where mask pixels are nonzero
+    masked = cv2.bitwise_and(img, mask)
+    return masked
 
 
-class CreateAccountWindow(Screen):
-    namee = ObjectProperty(None)
-    email = ObjectProperty(None)
-    password = ObjectProperty(None)
 
-    def submit(self):
-        if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
-            if self.password != "":
-                db.add_user(self.email.text, self.password.text, self.namee.text)
+def process_img(image):
+    original_image = image
+    # convert to gray
+    processed_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # edge detection
+    processed_img =  cv2.Canny(processed_img, threshold1 = 200, threshold2=300)
+    
+    processed_img = cv2.GaussianBlur(processed_img,(5,5),0)
+    
+    vertices = np.array([[10,500],[10,300],[300,200],[500,200],[800,300],[800,500],
+                         ], np.int32)
 
-                self.reset()
+    processed_img = roi(processed_img, [vertices])
 
-                sm.current = "login"
-            else:
-                invalidForm()
-        else:
-            invalidForm()
+    # more info: http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html
+    #                                     rho   theta   thresh  min length, max gap:        
+    lines = cv2.HoughLinesP(processed_img, 1, np.pi/180, 180,      20,       15)
+    m1 = 0
+    m2 = 0
+    try:
+        l1, l2, m1,m2 = draw_lanes(original_image,lines)
+        cv2.line(original_image, (l1[0], l1[1]), (l1[2], l1[3]), [0,255,0], 30)
+        cv2.line(original_image, (l2[0], l2[1]), (l2[2], l2[3]), [0,255,0], 30)
+    except Exception as e:
+        print(str(e))
+        pass
+    try:
+        for coords in lines:
+            coords = coords[0]
+            try:
+                cv2.line(processed_img, (coords[0], coords[1]), (coords[2], coords[3]), [255,0,0], 3)
+                
+                
+            except Exception as e:
+                print(str(e))
+    except Exception as e:
+        pass
 
-    def login(self):
-        self.reset()
-        sm.current = "login"
+    return processed_img,original_image, m1, m2
 
-    def reset(self):
-        self.email.text = ""
-        self.password.text = ""
-        self.namee.text = ""
+def straight():
+    PressKey(W)
+    ReleaseKey(A)
+    ReleaseKey(D)
 
+def left():
+    PressKey(A)
+    ReleaseKey(W)
+    ReleaseKey(D)
+    ReleaseKey(A)
 
-class LoginWindow(Screen):
-    email = ObjectProperty(None)
-    password = ObjectProperty(None)
+def right():
+    PressKey(D)
+    ReleaseKey(A)
+    ReleaseKey(W)
+    ReleaseKey(D)
 
-    def loginBtn(self):
-        if db.validate(self.email.text, self.password.text):
-            MainWindow.current = self.email.text
-            self.reset()
-            sm.current = "main"
-        else:
-            invalidLogin()
-
-    def createBtn(self):
-        self.reset()
-        sm.current = "create"
-
-    def reset(self):
-        self.email.text = ""
-        self.password.text = ""
-
-
-class MainWindow(Screen):
-    n = ObjectProperty(None)
-    created = ObjectProperty(None)
-    email = ObjectProperty(None)
-    current = ""
-
-    def logOut(self):
-        sm.current = "login"
-
-    def on_enter(self, *args):
-        password, name, created = db.get_user(self.current)
-        self.n.text = "Account Name: " + name
-        self.email.text = "Email: " + self.current
-        self.created.text = "Created On: " + created
-
-
-class WindowManager(ScreenManager):
-    pass
+def slow_ya_roll():
+    ReleaseKey(W)
+    ReleaseKey(A)
+    ReleaseKey(D)
 
 
-def invalidLogin():
-    pop = Popup(title='Invalid Login',
-                  content=Label(text='Invalid username or password.'),
-                  size_hint=(None, None), size=(400, 400))
-    pop.open()
+for i in list(range(4))[::-1]:
+    print(i+1)
+    time.sleep(1)
 
 
-def invalidForm():
-    pop = Popup(title='Invalid Form',
-                  content=Label(text='Please fill in all inputs with valid information.'),
-                  size_hint=(None, None), size=(400, 400))
+last_time = time.time()
+while True:
+    screen = grab_screen(region=(0,40,800,640))
+    print('Frame took {} seconds'.format(time.time()-last_time))
+    last_time = time.time()
+    new_screen,original_image, m1, m2 = process_img(screen)
+    #cv2.imshow('window', new_screen)
+    cv2.imshow('window2',cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
+    
+    if m1 < 0 and m2 < 0:
+        right()
+    elif m1 > 0  and m2 > 0:
+        left()
+    else:
+        straight()
+    
+    #cv2.imshow('window',cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
+    if cv2.waitKey(25) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
+        break
 
-    pop.open()
-
-
-kv = Builder.load_file("my.kv")
-
-sm = WindowManager()
-db = DataBase("users.txt")
-
-screens = [LoginWindow(name="login"), CreateAccountWindow(name="create"),MainWindow(name="main")]
-for screen in screens:
-    sm.add_widget(screen)
-
-sm.current = "login"
-
-
-class MyMainApp(App):
-    def build(self):
-        return sm
-
-
-if __name__ == "__main__":
-    MyMainApp().run()
